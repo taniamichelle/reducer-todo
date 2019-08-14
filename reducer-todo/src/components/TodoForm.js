@@ -1,12 +1,9 @@
 import React, { useState, useReducer } from 'react';
-//this form manages its own state (i.e. our form will live within the TodoForm)
 import { initialState, reducer } from '../reducers/Reducer';
 
 const TodoForm = () => {
     const [newTodo, setNewTodo] = useState();
 
-    // useReducer - takes in a reducer, and an initialState obj
-    // returns - a state obj, and the dispatch fn
     const [state, dispatch] = useReducer(reducer, initialState);
     console.log(state);
 
@@ -15,31 +12,34 @@ const TodoForm = () => {
     };
 
     return (
-        <form>
+        <div>
+            {/* {!state.completed ? (
+                <h1>
+                    {state.item}{' '}
+                    <input
+                        className="toggle-completed"
+                        onClick={() => dispatch({ type: 'TOGGLE_COMPLETED' })}
+                    />
+                </h1>
+            ) : ( */}
             <div>
-                {!state.completed ? (
-                    <h1>
-                        {state.item}{' '}
-                        <input
-                            className="toggle-completed"
-                            onClick={() => dispatch({ type: 'TOGGLE_COMPLETED' })}
-                        />
-                    </h1>
-                ) : (
-                        <div>
-                            <input
-                                className="add-todo"
-                                type="text"
-                                name="newTodo"
-                                value={newTodo}
-                                onChange={handleChanges}
-                            />
-                            <button onClick={() => dispatch({ type: 'ADD_TODO', payload: newTodo })}>Add Todo</button>
-                        </div>
-                    )}
+                <input
+                    className="add-todo"
+                    type="text"
+                    name="newTodo"
+                    value={newTodo}
+                    onChange={handleChanges}
+                />
+                <button onClick={() => dispatch({ type: 'ADD_TODO', payload: newTodo })}>Add Todo</button>
             </div>
-        </form>
+            {/* )} */}
+            <div className='todo-list'>
+                {state.todos.map(item => (console.log('test todo list')))}
+                <button className='clear-btn' onClick={() => dispatch({ type: 'CLEAR_COMPLETED', payload: newTodo.id })}>Clear Todo</button>
+            </div>
+        </div>
     );
-};
+}
 
 export default TodoForm;
+

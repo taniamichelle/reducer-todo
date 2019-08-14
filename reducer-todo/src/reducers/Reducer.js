@@ -16,7 +16,7 @@ export const initialState = {
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        //if our action.type is 'add_todo', we'll create a new todo
+        //if our action.type is 'add_todo'; it creates a new todo)
         case 'ADD_TODO':
             const newTodo = {
                 item: action.payload,
@@ -24,7 +24,6 @@ export const reducer = (state, action) => {
                 completed: false
             };
             return {
-                ...state,
                 /*new todo is added to our todos (updating our state) and 
                 we return a new state, which will re-render our app*/
                 todos: [...state.todos, newTodo]
