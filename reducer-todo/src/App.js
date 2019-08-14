@@ -4,7 +4,7 @@ import { initialState, reducer } from './reducers/Reducer';
 
 // components
 import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import TodoList from './components/List';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);

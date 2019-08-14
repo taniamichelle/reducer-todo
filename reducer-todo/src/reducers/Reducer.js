@@ -47,6 +47,7 @@ export const reducer = (state, action) => {
         case 'CLEAR_COMPLETED':
             return {
                 ...state,
+                item: action.payload,
                 todos: state.todos.filter(todo => !todo.completed)
             }
         default:
