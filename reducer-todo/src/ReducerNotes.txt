@@ -1,0 +1,113 @@
+// // Primitive
+
+// // string, bool, num, null, undefined
+
+// const num = 5;
+
+// let newNum = num;
+
+// newNum += 1;
+
+// console.log(num, newNum);
+
+
+// // reference 
+
+// // arr, object, functions
+
+// const obj = { name: 'Dustin', age: 32 };
+
+// // const newObj = Object.assign({}, obj, { age: 33 });
+// const newObj = {...obj, age: 33};
+
+// // newObj.age = 33;
+
+// console.log(obj, newObj);
+
+
+// // Immutability !== no changes
+// // Not changing the original data. We create new objs/arrays, and replace the original data.
+
+// const arr = [1,2,3,4];
+
+// const newArr = [...arr, 5];
+
+// const doubled = arr.map(num => num * 2);
+
+
+
+// /// Pure functions
+// // a function that has no side effects, and when given the same input, will _always_ return the same output
+
+// let score = 7;
+
+// const addToScore = (score, num) => {
+//   const newScore = score + num;
+//   return newScore;
+// }
+
+// score = addToScore(score, 3);
+
+// console.log(addToScore(score, 3))
+// console.log(addToScore(score, 3))
+
+
+// Reducers ->
+// 1. Pure functions!
+// 2. Take in two objects, reduce them down to a single obj, and return that new obj
+
+// Actions must be objects, and they _must_ have a "type:" property
+// the _can_ have a payload (data) property as well
+
+let currentState = { make: 'Chevy', model: 'Corvette', year: 2020 };
+const firstAction = { type: "CHANGE_YEAR", payload: 2021 }
+
+const reducer = (state, action) => {
+  // if (action.type === "CHANGE_YEAR") {
+  //   return {
+  //     ...state,
+  //     year: action.payload
+  //   }
+  // } else if (action.type === 'CHANGE_MAKE') {
+
+  // } else if (action.type === 'CHANGE_MODEL') {
+
+  // } else {
+  //   return state;
+  // }
+  switch(action.type) {
+    case "CHANGE_YEAR":
+      return {
+        ...state,
+        year: action.payload
+      };
+    case "CHANGE_MAKE":
+      return {};
+    case "CHANGE_MODEL":
+      return {};
+    default:
+      return state
+  }
+
+
+}
+
+const dispatch = action => {
+  currentState = reducer(currentState, action);
+
+  // reconciliation -> looking to see if state changed
+  // if so, re render your component
+}
+
+dispatch(firstAction);
+
+console.log(currentState); // ==> { make: ‘Chevy’, model: ‘Corvette’, year: 2021 }
+
+dispatch({ type: "CHANGE_YEAR", payload: 2022 });
+
+console.log(currentState); // ==> { make: ‘Chevy’, model: ‘Corvette’, year: 2022 }
+
+
+
+
+
